@@ -32,8 +32,8 @@ import java.awt.Color;
 public class ListarCliente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private static  Object[][] datofila= new Object[2][4] ;
-	private static String columnNombre[] = {"Nomre","Cedula","Numero","Direccion"};
+	//private static  Object[][] datofila= new Object[3][4] ;
+	private static String columnNombre[] = {"Nombre","Cedula","Numero","Direccion"};
 
 	private static DefaultTableModel tableModel;
 	private int code;
@@ -82,6 +82,7 @@ public class ListarCliente extends JDialog {
 
 				
 				 {
+					 /*
 					int j=0;
 					while(j<4) {
 						datofila[1][0]= "nom";//aux.getNombre();
@@ -89,19 +90,19 @@ public class ListarCliente extends JDialog {
 						datofila[1][2]="nom";
 						datofila[1][3]="nom";
 						j++;
-					}
+					}*/
 				panelDatos.setLayout(null);
+				//llenararreglo();
 			
 					
-				table = new JTable(datofila,columnNombre);
+				table = new JTable(llenararreglo(),columnNombre);
 				//table.setBounds(2, 2, 600, 300);
+				
 
 				JScrollPane scrollPane = new JScrollPane(table);
 				scrollPane.setBounds(10, 32, 711, 292);
 				panelDatos.add(scrollPane,BorderLayout.CENTER);
 				
-				//panel.add(new JScrollPane(table),BorderLayout.CENTER));
-				//panelDatos.(new JScrollPane(table),BorderLayout.CENTER));
 				}
 
 			
@@ -124,6 +125,21 @@ public class ListarCliente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	private Object[][] llenararreglo() {
+		Object[][] datofila=new Object[Biblioteca.getInstance().getMisClientes().size()][4];
+		int i=0;
+		for(Cliente aux : Biblioteca.getInstance().getMisClientes()) {
+			datofila[i][0]=aux.getNombre();
+			datofila[i][1]=aux.getCedula();	
+			datofila[i][2]=aux.getTelefono();
+			datofila[i][3]=aux.getDireccion();
+			i++;
+		}
+		return datofila;
+		
+		
 	}
 
 	

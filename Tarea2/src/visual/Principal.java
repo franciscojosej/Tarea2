@@ -14,11 +14,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+
+
 
 public class Principal extends JFrame {
 
@@ -79,7 +79,7 @@ public class Principal extends JFrame {
 		
 		JMenu mnPrestamo = new JMenu("Prestamo");
 		menuBar.add(mnPrestamo);
-		
+		  
 		JMenuItem mntmNuevoPrestamo = new JMenuItem("Nuevo Prestamo");
 		mnPrestamo.add(mntmNuevoPrestamo);
 		
@@ -93,6 +93,14 @@ public class Principal extends JFrame {
 		mnListar.add(mntmPublicaciones);
 		
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		mntmClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarCliente lisClien =new ListarCliente();
+				lisClien.setModal(false);
+				lisClien.setVisible(true);
+				
+			}
+		});
 		mnListar.add(mntmClientes);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

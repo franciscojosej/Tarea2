@@ -75,12 +75,6 @@ public class ListarCliente extends JDialog {
 				panelDatos.setBorder(new TitledBorder(null, "Datos de los Clientes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 				panel.add(panelDatos, BorderLayout.CENTER);
 
-				
-				
-				
-				
-
-				
 				 {
 					 /*
 					int j=0;
@@ -96,13 +90,9 @@ public class ListarCliente extends JDialog {
 			
 					
 				table = new JTable(llenararreglo(),columnNombre);
-				//table.setBounds(2, 2, 600, 300);
-				
-
 				JScrollPane scrollPane = new JScrollPane(table);
 				scrollPane.setBounds(10, 32, 711, 292);
 				panelDatos.add(scrollPane,BorderLayout.CENTER);
-				
 				}
 
 			

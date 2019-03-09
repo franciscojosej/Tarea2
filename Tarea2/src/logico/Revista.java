@@ -1,40 +1,44 @@
 package logico;
 
 public class Revista extends Publicacion {
-	private String anno;
-	private String numero;
+	private int anno;
+	private int numero;
+	
 	
 	
 	public Revista(String id, String autor, String titulo, int cantidadEjemplares, boolean estado, String materia,
-			String anno, String numero) {
+			int anno, int numero) {
 		super(id, autor, titulo, cantidadEjemplares, estado, materia);
 		this.anno = anno;
 		this.numero = numero;
 	}
 
 
-	public String getAnno() {
+
+	public int getAnno() {
 		return anno;
 	}
 
 
-	public void setAnno(String anno) {
+
+	public void setAnno(int anno) {
 		this.anno = anno;
 	}
 
 
-	public String getNumero() {
+
+	public int getNumero() {
 		return numero;
 	}
 
 
-	public void setNumero(String numero) {
+
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
-	
-	
-	
+
+
+
 	
 
 }

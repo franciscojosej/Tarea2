@@ -71,7 +71,7 @@ public class Biblioteca {
 		
 	}
 	//Registro general de las  publicaciones
-	public void incertarPulicacion(Publicacion nuevaPublicacion) {
+	public void insertarPublicacion(Publicacion nuevaPublicacion) {
 		misPublicaciones.add(nuevaPublicacion);
 	}
 	

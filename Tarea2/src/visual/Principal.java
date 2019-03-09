@@ -75,6 +75,14 @@ public class Principal extends JFrame {
 		mnRegistrar.add(mntmCliente);
 		
 		JMenuItem mntmPublicacin = new JMenuItem("Publicaci\u00F3n");
+		mntmPublicacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarPublicacion miPublicacion =new RegistrarPublicacion("Registrar Publicaciones", 0);
+				miPublicacion.setModal(true);
+				//miPublicacion.setLocationRelativeTo(null);
+				miPublicacion.setVisible(true);
+			}
+		});
 		mnRegistrar.add(mntmPublicacin);
 		
 		JMenu mnPrestamo = new JMenu("Prestamo");
@@ -90,6 +98,14 @@ public class Principal extends JFrame {
 		menuBar.add(mnListar);
 		
 		JMenuItem mntmPublicaciones = new JMenuItem("Publicaciones");
+		mntmPublicaciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarPublicaciones list = new ListarPublicaciones();
+				list.setModal(true);
+				list.setLocationRelativeTo(null);
+				list.setVisible(true);
+			}
+		});
 		mnListar.add(mntmPublicaciones);
 		
 		JMenuItem mntmClientes = new JMenuItem("Clientes");

@@ -1,19 +1,22 @@
 package listas;
 
+
+import java.awt.Component;
 import java.util.ArrayList;
 
 import javax.swing.AbstractListModel;
 
 import logico.Publicacion;
 
+
 public class Modelolista extends AbstractListModel{
 	private ArrayList<Publicacion> lista =new ArrayList<>();
 	
-
+ 
 	@Override
 	 public Object getElementAt(int index) {
 		Publicacion p = lista.get(index);
-	   return p.getTitulo();
+	   return p.getAutor();
 	 }
     
     @Override
@@ -36,6 +39,34 @@ public class Modelolista extends AbstractListModel{
     public Publicacion getPersona(int index){
     	  return lista.get(index);
     	}
+    public void clear(){
+ 	   lista.removeAll(lista);
+ 	   //this.fireIntervalRemoved(index0, getSize(), getSize()+1);
+ 	 }
+    
+  
+    public void filtrar (String filtro) {
+    	for (Publicacion aux: lista) {
+    		if(aux.getAutor().equalsIgnoreCase(filtro)!=true) {
+    			
+    			lista.remove(aux.getAutor().indexOf(filtro));//aux.getAutor().indexOf(filtro));
+    		}
+			
+		}
+    	
+    	
+
+    	
+    }
+  
+
+    
+    	
+    
+
+ 
+    
+    
     
  
 	

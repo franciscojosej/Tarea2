@@ -3,6 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -17,6 +18,8 @@ import logico.Libro;
 import logico.Publicacion;
 
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -24,23 +27,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.AbstractDocument.BranchElement;
 
+import javafx.scene.control.Cell;
+import javafx.scene.layout.Border;
 import listas.Modelolista;
 
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
+import javax.swing.UIManager;
+
+import java.awt.Button;
+import java.awt.Font;
+import java.awt.Panel;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GestionarPrestamo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	
 	private JList <String> lista;
-	//private JPanel laminaDeLista, laminaDeTexto;
-	//private  JLabel rotulo;
-	
-	JLabel label_prueba;
 	private String[] meses ={"Enero","Febrero","Marzp","abril"};
+	private JTextField textFNombreLibro;
+	private JTextField textField;
 	
-
+	Modelolista list_model ;
+    Color background ;
+    Color defaultBackground ;
+    
 	/**
 	 * Launch the application.
 	 */
@@ -58,7 +82,7 @@ public class GestionarPrestamo extends JDialog {
 	 * Create the dialog.
 	 */
 	public GestionarPrestamo() {
-		setBounds(100, 100, 751, 476);
+		setBounds(100, 100, 756, 584);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -70,45 +94,129 @@ public class GestionarPrestamo extends JDialog {
 			panel.setLayout(null);
 			
 			JPanel panelListaPrestamos = new JPanel();
-			panelListaPrestamos.setBounds(10, 45, 252, 338);
+			panelListaPrestamos.setBounds(24, 115, 252, 309);
 			panel.add(panelListaPrestamos);
 			panelListaPrestamos.setLayout(null);
-			{
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(10, 11, 232, 316);
-				panelListaPrestamos.add(scrollPane);
-				{
-					
-					Modelolista list_model = new Modelolista();
-					
-					JList<Publicacion> list = new JList();//meses
-					
-					for (Publicacion aux : Biblioteca.getInstance().getMisPublicaciones()) {
-						list_model.addPersona(aux);
-					}
-					list.setModel(list_model);
-					
-					list.addListSelectionListener(new ListSelectionListener() {
-						public void valueChanged(ListSelectionEvent e) {
-							List<Publicacion> valores= list.getSelectedValuesList();
-							
-							//StringBuilder texto = new StringBuilder("Valor selecionao");
-							
+			JScrollPane scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(10, 11, 232, 287);
+			panelListaPrestamos.add(scrollPane_1);
+			
+			JList<Publicacion> list = new JList();
+			
+			scrollPane_1.setViewportView(list);
+			 list_model = new Modelolista();
+			
+	            background = new Color(0, 100, 255, 15);
+	           defaultBackground = (Color) UIManager.get("List.background");
+	           
+	           Libro  dd= new Libro("dddddd", "d", "dd", 33, true, "ddd", "dddddd");
+	           for (int i = 0; i <1; i++) {
+	        	   Biblioteca.getInstance().getMisPublicaciones().add(dd);
+				
+			}
+	           Libro  d= new Libro("dddddd", "a", "dd", 33, true, "ddd", "dddddd");
+	           for (int i = 0; i < 5; i++) {
+	        	   Biblioteca.getInstance().getMisPublicaciones().add(d);
+				
+			}
+				
+			
 
-							
-							
-						
-						//	label_prueba.setText(texto.toString());
-						}
-					});
-					scrollPane.setViewportView(list);
+		
+			
+			
+			list.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					List<Publicacion> valores= list.getSelectedValuesList();
+					
+					//StringBuilder texto = new StringBuilder("Valor selecionao");
+					
+
+					
+					
+				
+				//	label_prueba.setText(texto.toString());
 				}
+			});
+	
+			
+			textFNombreLibro = new JTextField();
+			textFNombreLibro.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					for (Publicacion aux : Biblioteca.getInstance().getMisPublicaciones()) {
+						
+						if(filtro(textFNombreLibro.getText())!=true) {
+							list_model.addPersona(aux);
+							list.setForeground(Color.BLUE);
+						}
+							
+					}
+					
+					
+					list.setModel(list_model);
+				//	list.removeAll();
+					//list_model.clear();
+				}
+				
+			});
+		
+			
+			
+			
+			
+			
+		
+
+				
+			
+			
+			
+			
+		
+
+
+			textFNombreLibro.setBounds(126, 85, 159, 20);
+			panel.add(textFNombreLibro);
+			textFNombreLibro.setColumns(10);
+			
+			JLabel lblNombreDelLibro = new JLabel("Nombre Del Libro:");
+			lblNombreDelLibro.setBounds(24, 87, 123, 17);
+			panel.add(lblNombreDelLibro);
+			
+			JLabel lblId = new JLabel("ID:");
+			lblId.setBounds(24, 52, 46, 14);
+			panel.add(lblId);
+			{
+				textField = new JTextField();
+				textField.setBounds(126, 49, 160, 20);
+				panel.add(textField);
+				textField.setColumns(10);
 			}
 			
-			label_prueba = new JLabel("New label");
 			
-			label_prueba.setBounds(295, 45, 237, 38);
-			panel.add(label_prueba);
+			Button button = new Button(">");
+			button.setFont(new Font("Dialog", Font.BOLD, 18));
+			button.setBounds(298, 187, 70, 22);
+			panel.add(button);
+			{
+				Button button_1 = new Button("<");
+				button_1.setFont(new Font("Calibri", Font.BOLD, 18));
+				button_1.setBounds(298, 238, 70, 22);
+				panel.add(button_1);
+			}
+			
+			JPanel panePrestamos = new JPanel();
+			panePrestamos.setBounds(396, 115, 252, 309);
+			panel.add(panePrestamos);
+			panePrestamos.setLayout(null);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 11, 232, 287);
+			panePrestamos.add(scrollPane);
+			
+			JList list_1 = new JList();
+			scrollPane.setViewportView(list_1);
 			//panelListaPrestamos.list(new lisSeletionLisene());
 				
 			
@@ -148,6 +256,30 @@ public class GestionarPrestamo extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			
 		}
 	}
-}
+
+	private boolean filtro(String ss) {
+		// TODO Auto-generated method stub
+boolean	 filtrar =false;
+	 for (Publicacion aux : Biblioteca.getInstance().getMisPublicaciones()) {
+		 if(aux.getAutor().equalsIgnoreCase(ss)) {
+			  filtrar = true;
+			  break;
+			
+		 }
+	
+	}
+	 return filtrar;
+	 
+
+
+		
+	}
+
+	
+
+	}
+
+

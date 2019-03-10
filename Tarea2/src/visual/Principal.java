@@ -135,5 +135,10 @@ public class Principal extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
+	
 	}
+
+
+
+	
 }

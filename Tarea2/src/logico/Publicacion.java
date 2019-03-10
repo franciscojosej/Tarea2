@@ -58,6 +58,7 @@ public class Publicacion {
 		
 	}
 
+	
 	public boolean isEstado() {
 		return estado;
 	}

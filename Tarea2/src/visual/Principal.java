@@ -88,11 +88,15 @@ public class Principal extends JFrame {
 		JMenu mnPrestamo = new JMenu("Prestamo");
 		menuBar.add(mnPrestamo);
 		  
-		JMenuItem mntmNuevoPrestamo = new JMenuItem("Nuevo Prestamo");
+		JMenuItem mntmNuevoPrestamo = new JMenuItem("Gestionar Prestamo");
+		mntmNuevoPrestamo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GestionarPrestamo mipres = new GestionarPrestamo();
+				mipres.setModal(true);
+				mipres.setVisible(true);
+			}
+		});
 		mnPrestamo.add(mntmNuevoPrestamo);
-		
-		JMenuItem mntmSaldar = new JMenuItem("Saldar");
-		mnPrestamo.add(mntmSaldar);
 		
 		JMenu mnListar = new JMenu("Listar");
 		menuBar.add(mnListar);

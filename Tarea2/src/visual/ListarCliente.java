@@ -71,6 +71,7 @@ public class ListarCliente extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
+				
 				JPanel panelDatos = new JPanel();
 				panelDatos.setBorder(new TitledBorder(null, "Datos de los Clientes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 				panel.add(panelDatos, BorderLayout.CENTER);

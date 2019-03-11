@@ -16,7 +16,7 @@ import java.awt.event.ComponentEvent;
 public class JListFilterExample {
 	  
     public static void main(String[] args) {
-  
+ 
         Libro dd= new Libro ("dddddd", "mm", "dd", 33, true, "ddd", "dddddd");
         Libro d= new Libro ("a", "aa", "dd", 33, true, "ddd", "dddddd");
        for (int i = 0; i <4; i++) {
@@ -40,7 +40,7 @@ public class JListFilterExample {
         Stringes.forEach(model::addElement);
         JList<String> jList = new JList<>(model);
          
-        JPanel panel = JListFilterDecorator.decorate(jList, JListFilterExample::employeeFilter);
+        JPanel panel = JListFilterDecorator.decorate(jList, JListFilterExample::employeeFilter);///
 
         JFrame frame = createFrame();
         frame.getContentPane().add(panel);
@@ -50,7 +50,7 @@ public class JListFilterExample {
         
 
     }
-
+/////////////////////////////
     private static boolean employeeFilter(String emp, String str) {
         return emp.toLowerCase().contains(str.toLowerCase());
        
@@ -84,19 +84,16 @@ public class JListFilterExample {
             
         };
     }
-
+//crea un frame
     private static JFrame createFrame() {
         JFrame frame = new JFrame("JList Example");
 
-        frame.getContentPane().addComponentListener(new ComponentAdapter() {
-        	@Override
-        	public void componentHidden(ComponentEvent e) {
-        	}
-        });
+   
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(600, 300));
         return frame;
     }
+    
     
    
 }

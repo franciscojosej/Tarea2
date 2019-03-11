@@ -1,4 +1,4 @@
-package listas;
+package visual;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.function.BiPredicate;
 
 public class JListFilterDecorator {
-    public static <T> JPanel decorate(JList<T> jList, BiPredicate<T, String> userFilter,JTextField texFil) {
+    public static <T> JPanel decorate(JList<T> jList, BiPredicate<T, String> userFilter) {
         if (!(jList.getModel() instanceof DefaultListModel)) {
             throw new IllegalArgumentException("List model must be an instance of DefaultListModel");
         }
         DefaultListModel<T> model = (DefaultListModel<T>) jList.getModel();
         List<T> items = getItems(model);
-        JTextField textField = texFil;
+        JTextField textField = new JTextField();
         
       
         textField.getDocument().addDocumentListener(new DocumentListener() {

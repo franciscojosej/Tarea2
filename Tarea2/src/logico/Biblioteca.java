@@ -118,7 +118,7 @@ public class Biblioteca {
 	
 	//////////////////////////////
 
-private Publicacion findPublicacionById(String id) {
+public Publicacion findPublicacionById(String id) {
 	Publicacion publicacion=null;
 	boolean find = false;
 	int i=0;

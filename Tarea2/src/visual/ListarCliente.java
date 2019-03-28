@@ -36,7 +36,7 @@ public class ListarCliente extends JDialog {
 	private static String columnNombre[] = {"Nombre","Cedula","Numero","Direccion"};
 
 	private static DefaultTableModel tableModel;
-	private int code;
+
 	private static JTable table;
 	//JTable(Object[][] rowData, Object[] columnNames)
 	//Constructs a JTable to display the values in the two dimensional array, rowData, with column names, columnNames.

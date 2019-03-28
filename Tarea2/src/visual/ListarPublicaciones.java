@@ -37,7 +37,7 @@ public class ListarPublicaciones extends JDialog {
 	private static JButton btnEliminar;
 	private static JButton btnModificar;
 	private int code;
-	JComboBox cbxPublicType;
+	private JComboBox cbxPublicType;
 
 
 

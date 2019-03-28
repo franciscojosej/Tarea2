@@ -3,15 +3,15 @@ package logico;
 import java.util.Date;
 
 public class Prestamo {
-	private Date fechaInicioPrestamo;
-	private Date fechaDeEntrega;
+	private String fechaInicioPrestamo;
+	private String fechaDeEntrega;
 	private Publicacion prestamo;
 	private boolean status;
 	private int prorroga;
 	private String cedula;
 	
 	
-	public Prestamo(Date fechaInicioPrestamo, Date fechaDeEntrega, Publicacion prestamo,
+	public Prestamo(String fechaInicioPrestamo, String fechaDeEntrega, Publicacion prestamo,
 			String cedula) {
 		super();
 		this.fechaInicioPrestamo = fechaInicioPrestamo;
@@ -21,26 +21,36 @@ public class Prestamo {
 		this.prorroga = 0;
 		this.cedula = cedula;
 	}
+	
 
 
-	public Date getFechaInicioPrestamo() {
+
+	public String getFechaInicioPrestamo() {
 		return fechaInicioPrestamo;
 	}
 
 
-	public void setFechaInicioPrestamo(Date fechaInicioPrestamo) {
+
+
+	public void setFechaInicioPrestamo(String fechaInicioPrestamo) {
 		this.fechaInicioPrestamo = fechaInicioPrestamo;
 	}
 
 
-	public Date getFechaDeEntrega() {
+
+
+	public String getFechaDeEntrega() {
 		return fechaDeEntrega;
 	}
 
 
-	public void setFechaDeEntrega(Date fechaDeEntrega) {
+
+
+	public void setFechaDeEntrega(String fechaDeEntrega) {
 		this.fechaDeEntrega = fechaDeEntrega;
 	}
+
+
 
 
 	public Publicacion getPrestamo() {

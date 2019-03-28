@@ -50,7 +50,9 @@ public class Cliente {
 	public void setMisPrestamo(ArrayList<Prestamo> misPrestamo) {
 		this.misPrestamo = misPrestamo;
 	}
-	
+	public void agregarPrestamo(Prestamo nuevoPrestamo) {
+		misPrestamo.add(nuevoPrestamo);
+	}
 	
 	
 

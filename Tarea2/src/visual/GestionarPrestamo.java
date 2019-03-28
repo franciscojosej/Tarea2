@@ -57,8 +57,8 @@ public class GestionarPrestamo extends JDialog {
 	private JPanel panelListaPrestamos ;
 	private DefaultListModel<String> model;
 	private Modelolista modelo;
-    Color background ;
-    Color defaultBackground ;
+  private   Color background ;
+   private Color defaultBackground ;
     
 	/**
 	 * Launch the application.
@@ -187,12 +187,13 @@ public class GestionarPrestamo extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 				Publicacion aux =Biblioteca.getInstance().findPublicacionById(textF_ID.getText());
 				
-					if(aux!=null&& !textFNombreLibro.getText().equalsIgnoreCase("")&& aux.getTitulo().equalsIgnoreCase(textFNombreLibro.getText())&&
+					if(aux!=null&& !textFNombreLibro.getText().equalsIgnoreCase("")&& aux.getTitulo()
+							.equalsIgnoreCase(textFNombreLibro.getText())&&
 							jList.getSelectedIndex()!=-1) {
 						RealizarPrestamo nuevoPrestamo = new  RealizarPrestamo(jList.getSelectedIndex(),aux);
 						nuevoPrestamo.setModal(true);
 						nuevoPrestamo.setVisible(true);
-					//jList.getSelectedIndex());
+					//jList.getSelectedIndex();
 						
 					
 					}else {

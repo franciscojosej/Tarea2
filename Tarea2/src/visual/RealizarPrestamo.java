@@ -20,6 +20,7 @@ import logico.Publicacion;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,8 @@ public class RealizarPrestamo extends JDialog {
 	private JTextField textF_Cedula;
     private int index =0;
     private Publicacion miPubli;
+    private String fechaIn,fechaEntrega;
+    
 	/**
 	 * Launch the application.
 	 */
@@ -61,8 +64,9 @@ public class RealizarPrestamo extends JDialog {
 			LocalDateTime fecha =LocalDateTime.now();
 			LocalDateTime algunDia = LocalDateTime.of(1976, Month.MARCH, 27, 6, 10); 
 			
-			
-			FechaActual.setText(String.valueOf(fecha.getMonthValue())+":"+String.valueOf(fecha.getDayOfMonth()+":"+String.valueOf(fecha.getYear())));
+			fechaIn=String.valueOf(fecha.getMonthValue())+":"
+			+String.valueOf(fecha.getDayOfMonth()+":"+String.valueOf(fecha.getYear()));
+			FechaActual.setText(fechaIn);
 			panel.add(FechaActual);
 			
 			JLabel lblNewLabel_1 = new JLabel("Cedula:");
@@ -76,8 +80,9 @@ public class RealizarPrestamo extends JDialog {
 			
 			JLabel lblFechaDeEntrega = new JLabel("Fecha De Entrega:");
 			lblFechaDeEntrega.setBounds(303, 275, 124, 14);
-			lblFechaDeEntrega.setText(String.valueOf(fecha.getMonthValue()+1)+":"+String.valueOf(fecha.getDayOfMonth()+":"
-			+String.valueOf(fecha.getYear())));
+			fechaEntrega=String.valueOf(fecha.getMonthValue()+1)+":"+String.valueOf(fecha.getDayOfMonth()+":"
+					+String.valueOf(fecha.getYear()));
+			lblFechaDeEntrega.setText(fechaEntrega);
 			
 			panel.add(lblFechaDeEntrega);
 			
@@ -128,12 +133,20 @@ public class RealizarPrestamo extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//Prestamo miPrestamo =new Prestamo(FechaActual, fechaDeEntrega, prestamo, cedula)
-						//Cliente miCliente =Biblioteca.getInstance().findClient(textF_Cedula.getText())
-						//if(!textF_Cedula.getText().equalsIgnoreCase("")&&miCliente!=null) {
+						Prestamo miPrestamo =new Prestamo(fechaIn, fechaEntrega, miPubli,"33" );
+						Cliente miCliente =Biblioteca.getInstance().findClient(textF_Cedula.getText());
+						
+						if(!textF_Cedula.getText().equalsIgnoreCase("")&&miCliente!=null) {
 							
-							//miCliente.setMisPrestamo(misPrestamo);
-						//}
+							miCliente.agregarPrestamo(miPrestamo);
+						
+							JOptionPane.showMessageDialog(okButton, "Prestamo Realizado", "Conrirmacion",
+									JOptionPane.INFORMATION_MESSAGE);
+						}else {
+						
+							JOptionPane.showMessageDialog(okButton, "Verificar Campo", "Error",
+									JOptionPane.ERROR_MESSAGE );
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

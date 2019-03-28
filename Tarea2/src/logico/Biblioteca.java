@@ -100,12 +100,12 @@ public class Biblioteca {
 	}
 	
 	//inciso d 
-	public boolean doPrestamo(String id, String cedula,Date retorno){
+	public boolean doPrestamo(String id, String cedula, String fechaInic , String retorno){
 		boolean doPrestamo = false;
 		Cliente client = findClienteByCedula(cedula);
 		Publicacion publi = findPublicacionById(id);
 		if(client.getMisPrestamo().size()<5 && publi.isStatus()){
-			Prestamo nuevoPrestamo = new Prestamo(new Date(), retorno,publi, client.getCedula());
+			Prestamo nuevoPrestamo = new Prestamo(fechaInic, retorno,publi, client.getCedula());
 			misPrestamo.add(nuevoPrestamo);
 			client.getMisPrestamo().add(nuevoPrestamo);
 			doPrestamo = true;

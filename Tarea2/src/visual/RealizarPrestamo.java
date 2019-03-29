@@ -133,10 +133,10 @@ public class RealizarPrestamo extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Prestamo miPrestamo =new Prestamo(fechaIn, fechaEntrega, miPubli,"33" );
+						Prestamo miPrestamo =new Prestamo(fechaIn, fechaEntrega, miPubli,textF_Cedula.getText() );
 						Cliente miCliente =Biblioteca.getInstance().findClient(textF_Cedula.getText());
 						
-						if(!textF_Cedula.getText().equalsIgnoreCase("")&&miCliente!=null) {
+						if(!textF_Cedula.getText().equalsIgnoreCase("")&&miCliente!=null&&Biblioteca.getInstance().doPrestamo(miPubli.getId(), miCliente.getCedula(), fechaIn, fechaEntrega)) {
 							
 							miCliente.agregarPrestamo(miPrestamo);
 						

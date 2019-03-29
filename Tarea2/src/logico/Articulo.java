@@ -1,6 +1,12 @@
 package logico;
 
-public class Articulo extends Publicacion {
+import java.io.Serializable;
+
+public class Articulo extends Publicacion implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String arbitro;
 
 	public Articulo(String id, String autor, String titulo, int cantidadEjemplares, boolean estado, String materia,

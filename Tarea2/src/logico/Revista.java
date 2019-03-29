@@ -1,6 +1,12 @@
 package logico;
 
-public class Revista extends Publicacion {
+import java.io.Serializable;
+
+public class Revista extends Publicacion implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int anno;
 	private int numero;
 	

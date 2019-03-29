@@ -1,6 +1,8 @@
 package logico;
 
-public class Libro extends Publicacion {
+import java.io.Serializable;
+
+public class Libro extends Publicacion implements Serializable{
 	private String editorial;
 
 	public Libro(String id, String autor, String titulo, int cantidadEjemplares, boolean estado, String materia,

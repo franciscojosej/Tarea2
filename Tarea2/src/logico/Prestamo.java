@@ -1,27 +1,56 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Prestamo {
+public class Prestamo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String fechaInicioPrestamo;
 	private String fechaDeEntrega;
 	private Publicacion prestamo;
 	private boolean status;
 	private int prorroga;
 	private String cedula;
+	private int codePrespamo;
 	
 	
+
+//	(fechaInic, retorno,publi, client.getCedula());
+
+
 	public Prestamo(String fechaInicioPrestamo, String fechaDeEntrega, Publicacion prestamo,
-			String cedula) {
+			 String cedula ) {
 		super();
 		this.fechaInicioPrestamo = fechaInicioPrestamo;
 		this.fechaDeEntrega = fechaDeEntrega;
 		this.prestamo = prestamo;
+		
 		this.status = true;
 		this.prorroga = 0;
 		this.cedula = cedula;
+		codePrespamo=0;
 	}
 	
+
+
+
+
+	public int getCodePrespamo() {
+		return codePrespamo;
+	}
+
+
+
+
+
+	public void setCodePrespamo(int codePrespamo) {
+		this.codePrespamo = codePrespamo;
+	}
+
+
 
 
 

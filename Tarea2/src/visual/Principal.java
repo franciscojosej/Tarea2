@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+
+import logico.Biblioteca;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -14,7 +18,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -31,6 +42,36 @@ public class Principal extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				FileInputStream empresa;
+				FileOutputStream empresa2;
+				ObjectInputStream empresaRead;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa = new FileInputStream ("biblioteca.dat");
+					empresaRead = new ObjectInputStream(empresa);
+					Biblioteca temp = (Biblioteca)empresaRead.readObject();
+					Biblioteca.setBiblio(temp);;
+				} catch (FileNotFoundException e) {
+					try {
+						empresa2 = new  FileOutputStream("biblioteca.dat");
+						empresaWrite = new ObjectOutputStream(empresa2);
+						//User aux = new User("Administrador", "Admin", "Admin");
+					//	Control.getInstance().regUser(aux);
+						empresaWrite.writeObject(Biblioteca.getInstance());
+					} catch (FileNotFoundException e1) {
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+					}
+				} catch (IOException e) {
+					
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
 				try {
 					Principal frame = new Principal();
 					frame.setVisible(true);
@@ -45,6 +86,26 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("biblioteca.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Biblioteca.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		setTitle("Biblioteca");
 		setResizable(false);
 	//	setLocationRelativeTo(1);

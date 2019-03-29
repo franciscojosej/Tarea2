@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -249,7 +250,7 @@ public class RegistrarPublicacion extends JDialog {
 						if(rdbtnRevista.isSelected()){
 							int anno = new Integer(spnCant.getValue().toString());
 							int numero = new Integer(txtNum.getText()); 
-							aux = new Revista(id, autor,titulo,  cant, true, materia, anno, numero);
+							aux = new Revista(id, titulo,autor,  cant, true, materia, anno, numero);
 							
 						}
 						if(rdbtnArtculo.isSelected()){
@@ -260,9 +261,26 @@ public class RegistrarPublicacion extends JDialog {
 						if(rdbtnLibro.isSelected()){
 							String editorial = cbxEditorial.getSelectedItem().toString();
 							aux = new Libro(id, titulo, autor, cant, true, materia, editorial);
-							
 						}
-						Biblioteca.getInstance().insertarPublicacion(aux);
+						
+						
+						 
+						
+						
+						
+						if(aux!=null&&!cbxMateria.getSelectedItem().toString().equalsIgnoreCase("selecionar")
+								&new Integer(spnCant.getValue().toString())!=0  &&!txtAutor.getText().equalsIgnoreCase("")
+								&&!txtTitle.getText().equalsIgnoreCase("")&&!txtId.getText().equalsIgnoreCase("")
+								&&Biblioteca.getInstance().findPublicacionById(txtId.getText())==null) {
+						
+							
+							Biblioteca.getInstance().insertarPublicacion(aux);
+							JOptionPane.showMessageDialog(null, "Cliente Registrado", "Conrirmacion",
+									JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(null, "Verificar Campos", "Error",JOptionPane.ERROR_MESSAGE );
+						}
+						
 						//fed.insertPublicacion(aux);
 						//System.out.println("La cantidad de libros es: "+fed.getMisPublicaciones().size());
 					}

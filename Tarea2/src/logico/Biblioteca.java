@@ -1,5 +1,6 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,11 +11,16 @@ import logico.Prestamo;
 import logico.Publicacion;
 import logico.Revista;
 
-public class Biblioteca {
+public class Biblioteca implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Publicacion> misPublicaciones;
 	private ArrayList<Prestamo> misPrestamo;
 	private ArrayList<Cliente>misClientes;
 	private static Biblioteca biblio=null;
+	private static int codePrestamo;
 	
 	
 	public Biblioteca() {
@@ -22,11 +28,22 @@ public class Biblioteca {
 		this.misPublicaciones = new ArrayList<>();
 		this.misPrestamo = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
+		codePrestamo=0;
 	}
 
 
 	public ArrayList<Publicacion> getMisPublicaciones() {
 		return misPublicaciones;
+	}
+
+
+	public static int getCodePrestamo() {
+		return codePrestamo;
+	}
+
+
+	public static void incrementarCodePrestamo(){
+		++Biblioteca.codePrestamo;
 	}
 
 
@@ -194,6 +211,19 @@ public int[] prestamosByType(String cedula){
 	 }	 
 	 return iCanRemove;
  }
+
+
+public static Biblioteca getBiblio() {
+	return biblio;
+}
+
+
+public static void setBiblio(Biblioteca biblio) {
+	Biblioteca.biblio = biblio;
+}
+
+
+
 	
 
 }

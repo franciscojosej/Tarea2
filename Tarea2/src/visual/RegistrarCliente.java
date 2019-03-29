@@ -120,11 +120,11 @@ public class RegistrarCliente extends JDialog {
 								!textF_Direccion.getText().equals("")&&!textF_Telefono.getText().equals("") ) {
 							auxCli = new Cliente(cedula, nombre, direccion, telefono);
 							 //probar que alllenarse se desplacen
-							for(int i=0; i<100; i++) {
-								Biblioteca.getInstance().setMisClientes(auxCli);
-							}
 							
-						
+								Biblioteca.getInstance().setMisClientes(auxCli);
+							
+							
+								CleartexFi();
 							JOptionPane.showMessageDialog(okButton, "Cliente Registrado", "Conrirmacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							/*

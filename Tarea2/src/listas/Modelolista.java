@@ -16,7 +16,7 @@ public class Modelolista extends AbstractListModel{
 	@Override
 	 public Object getElementAt(int index) {
 		Publicacion p = lista.get(index);
-	   return p.getAutor();
+	   return p.getTitulo();
 	 }
     
     @Override
@@ -49,7 +49,7 @@ public class Modelolista extends AbstractListModel{
     	for (Publicacion aux: lista) {
     		if(aux.getAutor().equalsIgnoreCase(filtro)!=true) {
     			
-    			lista.remove(aux.getAutor().indexOf(filtro));//aux.getAutor().indexOf(filtro));
+    			lista.remove(aux.getTitulo().indexOf(filtro));//aux.getAutor().indexOf(filtro));
     		}
 			
 		}

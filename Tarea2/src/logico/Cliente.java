@@ -1,10 +1,15 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import logico.Prestamo;
 
-public class Cliente {
+public class Cliente implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String  cedula;
 	private String nombre;
 	private String direccion;
@@ -51,6 +56,10 @@ public class Cliente {
 		this.misPrestamo = misPrestamo;
 	}
 	public void agregarPrestamo(Prestamo nuevoPrestamo) {
+		
+		
+		nuevoPrestamo.setCodePrespamo(Biblioteca.getCodePrestamo());
+		Biblioteca.incrementarCodePrestamo();
 		misPrestamo.add(nuevoPrestamo);
 	}
 	
